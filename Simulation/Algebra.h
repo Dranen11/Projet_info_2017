@@ -1,7 +1,6 @@
 //Function for solving Cholesky problem
-#include <complex>
-
+#include <cstdlib>
 
 template<typename Type>
-std::complex<Type>* solve_cholesky_complex_tri_diag(std::complex<Type>* low_diag, std::complex<Type>* diag, std::complex<Type>* u, std::size_t n);
+Type* solve_cholesky_tri_diag(Type* low_diag, Type* diag, Type* u, std::size_t n);
 

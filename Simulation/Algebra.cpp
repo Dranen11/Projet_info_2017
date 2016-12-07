@@ -1,16 +1,15 @@
 #include "Algebra.h"
-#include <cstdlib>
 #include <cmath>
 
 using namespace std;
 
-template<typename Type> complex<Type>* solve_cholesky_complex_tri_diag(complex<Type>* low_diag, complex<Type>* diag, complex<Type>* u, size_t n)
+template<typename Type> Type* solve_cholesky_tri_diag(Type* low_diag, Type* diag, Type* u, size_t n)
 {
-   complex<Type> *result, *dec_diag, *dec_low_diag; //Variables dec are think to store the decomposition
+   Type *result, *dec_diag, *dec_low_diag; //Variables dec are think to store the decomposition
    
-   result = complex<Type>* malloc(n*sizeof(complex<Type>));
-   dec_diag = complex<Type>* malloc(n*sizeof(complex<Type>));
-   dec_low_diag = complex<Type>* malloc((n-1)*sizeof(complex<Type>));
+   result = (Type*) malloc(n*sizeof(Type));
+   dec_diag = (Type*) malloc(n*sizeof(Type));
+   dec_low_diag = (Type*) malloc((n-1)*sizeof(Type));
 
 
    //Decomposition
