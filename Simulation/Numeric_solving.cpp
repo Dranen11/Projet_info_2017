@@ -10,8 +10,9 @@ void simulation_1D(Writing& output, double length, size_t N_x, double simulation
    
    for(size_t i = 1; i <= N_t; i++)
    {
+      t+=dt;
       numeric_solving(t, N_x, dx, dt, m, position, potential, param_potential);
-
+      
       if(count++ >= output.freq_writing)
       {
 	 writing_position_1D(output, t, position, N_x);
