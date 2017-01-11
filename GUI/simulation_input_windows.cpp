@@ -1,12 +1,13 @@
 #include "simulation_input_windows.h"
-#include <QFileDialog>
 
 Simulation_Input_Windows::Simulation_Input_Windows(QWidget *parent) : QWidget(parent)
 {
     main_layout = new QGridLayout;
     this->setLayout(main_layout);
 
-    main_layout->addWidget(file_param_box_construction(),0,0);
+    file_parameter_import = new file_import_widget("Importation d'un fichier de parametre");
+    main_layout->addWidget(file_parameter_import,0,0);
+    connect(file_parameter_import, SIGNAL(import_file(QString)), this, SIGNAL(import_file_parameter(QString)));
 
     main_layout->addWidget(dim_box_construction(),1,0);
 }
@@ -19,11 +20,7 @@ Simulation_Input_Windows::~Simulation_Input_Windows()
     delete layout_dim;
     delete box_dim;
 
-    delete file_import_button;
-    delete file_path_button;
-    delete file_path_text;
-    delete layout_file_param;
-    delete box_file_param;
+    delete file_parameter_import;
 
     delete main_layout;
 }
@@ -48,25 +45,6 @@ QWidget* Simulation_Input_Windows::dim_box_construction()
     return box_dim;
 }
 
-QWidget* Simulation_Input_Windows::file_param_box_construction()
-{
-    box_file_param = new QGroupBox("Importer un fichier de parametre");
-
-    layout_file_param = new QHBoxLayout(box_file_param);
-
-    file_path_text = new QLineEdit;
-    file_path_button = new QToolButton;
-    file_import_button = new QPushButton("Importer");
-    layout_file_param->addWidget(file_path_text);
-    layout_file_param->addWidget(file_path_button);
-    layout_file_param->addWidget(file_import_button);
-
-    connect(file_import_button,SIGNAL(pressed()),this,SLOT(sig_import_file_parameter()));
-    connect(file_path_button,SIGNAL(pressed()),this,SLOT(choice_file_parameter()));
-
-    return box_file_param;
-}
-
 int Simulation_Input_Windows::Number_dimension()
 {
     if(button_1D->isChecked())
@@ -81,14 +59,4 @@ int Simulation_Input_Windows::Number_dimension()
     {
         return 3;
     }
-}
-
-void Simulation_Input_Windows::choice_file_parameter()
-{
-    file_path_text->setText(QFileDialog::getOpenFileName(this, "Ouvrir un fichier"));
-}
-
-void Simulation_Input_Windows::sig_import_file_parameter()
-{
-    emit import_file_parameter(file_path_text->text());
 }
