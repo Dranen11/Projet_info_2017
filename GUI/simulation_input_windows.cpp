@@ -42,6 +42,7 @@ QWidget* Simulation_Input_Windows::dim_box_construction()
     button_2D->setEnabled(false);
     button_3D->setEnabled(false);
 
+    layout_dim->addStretch();
     return box_dim;
 }
 

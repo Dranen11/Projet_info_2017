@@ -1,21 +1,27 @@
 #include "file_import_widget.h"
 #include <QFileDialog>
 
-file_import_widget::file_import_widget(QWidget *parent) : QGroupBox(parent)
+file_import_widget::file_import_widget(QWidget *parent) : QGroupBox(parent), import_button(true)
 {
     widget_construction();
 }
 
-file_import_widget::file_import_widget(QString title, QWidget *parent) : QGroupBox(title, parent)
+file_import_widget::file_import_widget(QString title, QWidget *parent) : QGroupBox(title, parent), import_button(true)
 {
     widget_construction();
 }
+
+file_import_widget::file_import_widget(QString title, bool button_import, QWidget *parent) : QGroupBox(title, parent), import_button(button_import)
+{
+    widget_construction();
+}
+
 
 file_import_widget::~file_import_widget()
 {
     delete file_path_text;
     delete file_path_button;
-    delete file_import_button;
+    if(import_button){delete file_import_button;}
     delete layout_file;
 }
 
@@ -35,11 +41,22 @@ void file_import_widget::widget_construction()
 
     file_path_text = new QLineEdit;
     file_path_button = new QPushButton("...");
-    file_import_button = new QPushButton("Importer");
+
     layout_file->addWidget(file_path_text);
     layout_file->addWidget(file_path_button);
-    layout_file->addWidget(file_import_button);
 
-    connect(file_import_button,SIGNAL(pressed()),this,SLOT(_import_file()));
     connect(file_path_button,SIGNAL(pressed()),this,SLOT(choice_file()));
+
+
+    if(import_button)
+    {
+        file_import_button = new QPushButton("Importer");
+        connect(file_import_button,SIGNAL(pressed()),this,SLOT(_import_file()));
+        layout_file->addWidget(file_import_button);
+    }
+}
+
+QString file_import_widget::file_path()
+{
+    return file_path_text->text();
 }

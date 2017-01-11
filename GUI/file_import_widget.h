@@ -19,10 +19,14 @@ class file_import_widget : public QGroupBox
 public:
     explicit file_import_widget(QWidget *parent = 0);
     explicit file_import_widget(QString title, QWidget *parent = 0); //Pour définir un titre à la GroupBox
+    explicit file_import_widget(QString title, bool button_import, QWidget *parent = 0); //Pour définir un titre à la GroupBox et désactiver le bouton import
     ~file_import_widget();
 
 signals:
     void import_file(QString file); //signal de l'appui du bouton pour importer le fichier, le chemin étant contenu dans file
+
+public slots:
+    QString file_path();
 
 protected slots:
     void _import_file();
@@ -35,6 +39,7 @@ protected:
     QLineEdit *file_path_text;
     QPushButton *file_path_button;
     QPushButton *file_import_button;
+    bool import_button;
 };
 
 #endif // FILE_IMPORT_WIDGET_H
