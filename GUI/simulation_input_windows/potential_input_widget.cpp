@@ -143,8 +143,7 @@ void potential_input_widget::display_constant()
 {
     display_erase();
     box_constant->show();
-    layout_constant->addWidget(spin_box_param1);
-    layout_constant->addStretch();
+    layout_constant->insertWidget(1,spin_box_param1);
 }
 
 void potential_input_widget::display_file()
@@ -157,21 +156,19 @@ void potential_input_widget::display_parabol()
 {
     display_erase();
     box_parabol->show();
-    layout_parabol->addWidget(spin_box_param1);
-    layout_parabol->addWidget(spin_box_param2);
-    layout_parabol->addWidget(spin_box_param3);
-    layout_parabol->addStretch();
+    layout_parabol->insertWidget(1,spin_box_param1);
+    layout_parabol->insertWidget(2,spin_box_param2);
+    layout_parabol->insertWidget(3,spin_box_param3);
 }
 
 void potential_input_widget::display_sinusoid()
 {
     display_erase();
     box_sinusoid->show();
-    layout_sinusoid->addWidget(spin_box_param1);
-    layout_sinusoid->addWidget(spin_box_param2);
-    layout_sinusoid->addWidget(spin_box_param3);
-    layout_sinusoid->addWidget(spin_box_param4);
-    layout_sinusoid->addStretch();
+    layout_sinusoid->insertWidget(1,spin_box_param1);
+    layout_sinusoid->insertWidget(2,spin_box_param2);
+    layout_sinusoid->insertWidget(3,spin_box_param3);
+    layout_sinusoid->insertWidget(4,spin_box_param4);
 }
 
 void potential_input_widget::display_erase()
