@@ -9,6 +9,7 @@
 #include <QPushButton>
 
 #include "file_import_widget.h"
+#include "simulation_input_windows/potential_input_widget.h"
 
 class Simulation_Input_Windows : public QWidget
 {
@@ -30,6 +31,7 @@ protected:
     QGridLayout *main_layout;
 
     file_import_widget* file_parameter_import;
+    potential_input_widget* potential_input;
 
     QGroupBox *box_dim;
     QHBoxLayout *layout_dim;

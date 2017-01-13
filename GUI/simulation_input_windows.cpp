@@ -10,6 +10,9 @@ Simulation_Input_Windows::Simulation_Input_Windows(QWidget *parent) : QWidget(pa
     connect(file_parameter_import, SIGNAL(import_file(QString)), this, SIGNAL(import_file_parameter(QString)));
 
     main_layout->addWidget(dim_box_construction(),1,0);
+
+    potential_input = new potential_input_widget;
+    main_layout->addWidget(potential_input);
 }
 
 Simulation_Input_Windows::~Simulation_Input_Windows()
@@ -21,6 +24,8 @@ Simulation_Input_Windows::~Simulation_Input_Windows()
     delete box_dim;
 
     delete file_parameter_import;
+
+    delete potential_input;
 
     delete main_layout;
 }

@@ -5,6 +5,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = Projet_info
 TEMPLATE = app
 
+QMAKE_CXXFLAGS += -std=c++11
+
 HEADERS += \
     #Simulation/Algebra.h \
     #Simulation/Numeric_solving.h \
