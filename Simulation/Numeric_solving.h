@@ -12,9 +12,7 @@ potential : Function of position and time and parameters, which return the poten
 position : contained the initial position and at the end of the simulation, the last position
  */
 void simulation_1D(Writing &output, double length, size_t N_x, double simulation_time, size_t N_t, double m, std::complex<double>* position, double (*potential)(double, double, double*), double* param_potential, void (*numeric_solving)(double, size_t, double, double, double, std::complex<double>*, double (*potential)(double, double, double*), double*));
+void simulation_1D(complex<double>** output double length, size_t N_x, double simulation_time, size_t N_t, double m, complex<double>* position, double* potential, void (*numeric_solving)(double, size_t, double, double, double,complex<double>*, double* potential, double*), size_t freq_writing = 1);
 
 void Crank_Nicholson_1D(double t, size_t N_x, double dx, double dt, double m, std::complex<double>* position, double (*potential)(double, double, double*), double* param_potential);
-
-
-//Function who write the time and the value at position in the output
-void writing_position_1D(Writing &output, double t, std::complex<double>* position, size_t N_x);
+void Crank_Nicholson_1D(double t, size_t N_x, double dx, double dt, double m, std::complex<double>* position, double *potential, double* param_potential);
