@@ -20,10 +20,26 @@ inline double P_parabol(double x, double t, double* param)
    return param[0]*x*x + param[1]*x + param[2];
 }
 
+inline double P_puit(double x, double t, double* param)
+{
+   if(x > param[0] && x < param[1])
+   {
+   		return param[2];
+   }
+   
+   return 0;
+}
+
+inline double P_marche(double x, double t, double* param)
+{
+   return param[0]*x*x + param[1]*x + param[2];
+}
 
 // Generate a table with the potential at each coordinate X
 double* P_tableau(double length, size_t N_x, double* param, double (*potential)(double, double, double*));
 
+// Generate a table with the potential at each coordinate X and time t
+double** P_tableau(double length, size_t N_x, double dt, size_t N_t, double* param, double (*potential)(double, double, double*));
 
 
 #endif
