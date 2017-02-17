@@ -1,18 +1,23 @@
 #Makefile Projet
 
 CC=gcc
-CFLAGS=-W -Wall -std=c++11 -O3
+CXX=g++
+CFLAGS=-W -Wall -std=c++14 	-O3 -march=native
 LDFLAGS=
 
 
-Simulation/Simulation.a: Simulation/Algebra.o Simulation/Numeric_solving.o
+Simulation/Simulation.a: Simulation/Numeric_solving.o Simulation/IO.o Simulation/Potential.o
 		ar -r $@ $<
 
-Simulation/Algebra.o: Simulation/Algebra.cpp Simulation/Algebra.h
-		$(CC) -o $@ -c $< $(CFLAGS)
+Simulation/Numeric_solving.o: Simulation/Numeric_solving.cpp
+		$(CXX) -o $@ -c $< $(CFLAGS)
 
-Simulation/Numeric_solving.o: Simulation/Numeric_solving.cpp Simulation/Numeric_solving.h
-		$(CC) -o $@ -c $< $(CFLAGS)
+Simulation/Potential.o: Simulation/Potential.cpp
+		$(CXX) -o $@ -c $< $(CFLAGS)
+
+Simulation/IO.o: Simulation/IO.cpp
+		$(CXX) -o $@ -c $< $(CFLAGS)
 
 clean:
 		rm -rf *.o
+		rm -rf Simulation/*.o
