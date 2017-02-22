@@ -4,7 +4,9 @@
 #include <cmath>
 #include <string>
 
-//Some possible potential(constant, sinusoidal and parabol)
+//Some possible potential(constant, sinusoidal, parabol and a well)
+
+// param = valeur de base
 inline double P_const(double x, double t, double* param)
 {
    return *param;
@@ -20,6 +22,7 @@ inline double P_parabol(double x, double t, double* param)
    return param[0]*x*x + param[1]*x + param[2];
 }
 
+//param[0] et param[1], limite à gauche et à droite, param[2] energie du puit et param[3] energie de base
 inline double P_puit(double x, double t, double* param)
 {
    if(x > param[0] && x < param[1])
@@ -27,12 +30,12 @@ inline double P_puit(double x, double t, double* param)
    		return param[2];
    }
    
-   return 0;
+   return param[3];
 }
 
-inline double P_marche(double x, double t, double* param)
+inline double P_def(double x, double t, double* param)
 {
-   return param[0]*x*x + param[1]*x + param[2];
+	return param[0]/pow(cosh(x/param[1]),2.0);
 }
 
 // Generate a table with the potential at each coordinate X
