@@ -63,9 +63,9 @@ int main()
 		cout << endl << "a0 :" << endl;
 		param[0] = 1e-15;
 		cout << endl << "k0 :" << endl;
-		cin >> 2.3e-16;
+		param[1] = 2.3e-16;
 		cout << endl << "x0 :" << endl;
-		cin >> 3.0e-14;
+		param[2] = 3.0e-14;
 		position = paquet_gaussien(length, N_x, param);
 		free(param);
 	}
