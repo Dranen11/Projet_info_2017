@@ -9,8 +9,8 @@ graph_name = @graph_name
 figure(1,figsize=(16,6))
 plot(tableau[:, 0], tableau[:, 1])
 xlabel(x_label)
-ylabel(y_label
-title(tableau)
+ylabel(y_label)
+title(graph_name)
 
 savefig(graph_name + ".eps")
 show();

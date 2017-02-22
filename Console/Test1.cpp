@@ -153,7 +153,7 @@ int main()
 	}
 	free(data_pot.table);
 
-
+	
 	//simulation_1D(std::complex<double>** output, double length, size_t N_x, double simulation_time, size_t N_t, double m, std::complex<double>* position, double (*potential)(double, double, double*), double* param_potential, void (*numeric_solving)(double, size_t, double, double, double, std::complex<double>*, double (*potential)(double, double, double*), double*), size_t freq_writing = 1);
 	simulation_1D(output, length, N_x, temps, N_t, masse, position, pot, param, numeric_solving, frequence_ecriture);
 

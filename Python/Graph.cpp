@@ -6,8 +6,8 @@
 #include "Graph.h"
 #include "../Simulation/IO.h"
 
-#define S_GRAPH_SIMPLE "Graph_Simple.py"
-#define S_GRAPH_HEATMAP "Graph_2D.py"
+#define S_GRAPH_SIMPLE "Python/Graph_Simple.py"
+#define S_GRAPH_HEATMAP "Python/Graph_2D.py"
 
 #define S_TAB "@tableau"
 #define S_X_LAB "@x_label"
@@ -32,9 +32,9 @@ void graph_simple(Table2D tableau, string label_x, string label_y, string graph_
 	fstream f_script(S_GRAPH_SIMPLE);
 	string ligne, script, tab;
 
-	while(getline(f_script, ligne)) //Tant qu'on n'est pas à la fin, on lit
+	while(getline(f_script, ligne))
 	{
-		script += ligne;
+		script += ligne + '\n';
     }
 	f_script.close();
 
@@ -55,9 +55,9 @@ void graph_simple(Table2D tableau, string label_x, string label_y, string graph_
 	tab += "]";
 
 	remplacement_chaine(script, S_TAB, tab);
-	remplacement_chaine(script, S_X_LAB, label_x);
-	remplacement_chaine(script, S_Y_LAB, label_y);
-	remplacement_chaine(script, S_NAME, graph_name);
+	remplacement_chaine(script, S_X_LAB, '\''+label_x+'\'');
+	remplacement_chaine(script, S_Y_LAB, '\''+label_y+'\'');
+	remplacement_chaine(script, S_NAME, '\''+graph_name+'\'');
 
 	lancement_script(script);
 }
@@ -68,9 +68,9 @@ void graph_heatmap(Table2D tableau, double length, string label_x, string label_
 	fstream f_script(S_GRAPH_HEATMAP);
 	string ligne, script, tab, x, y;
 
-	while(getline(f_script, ligne)) //Tant qu'on n'est pas à la fin, on lit
+	while(getline(f_script, ligne))
 	{
-		script += ligne;
+		script += ligne + '\n';
     }
 	f_script.close();
 

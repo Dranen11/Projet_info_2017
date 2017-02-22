@@ -136,8 +136,8 @@ int main()
 	{
 		throw "Erreur saisisie potentiel";
 	}
-	
-	cout << endl << "test" << endl;
+
+
 
 	Table2D data_pot;
 	data_pot.S_x = N_x;
@@ -147,22 +147,20 @@ int main()
 	for(size_t i = 0; i < N_x; i++)
 	{
 		data_pot.table[i] = (double*) malloc(2*sizeof(double));
+		data_pot.table[i][0] = i*length/(N_x-1);
+		data_pot.table[i][1] = V[i];
 	}
-	graph_simple(data_pot, "x", "y", nom_simulation + "_potentiel");
-	for(size_t i = 0; i < N_x; i++)
-	{
-		free(data_pot.table[i]);
-	}
-	free(data_pot.table);
 
 
-	//simulation_1D(std::complex<double>** output, double length, size_t N_x, double simulation_time, size_t N_t, double m, std::complex<double>* position, double (*potential)(double, double, double*), double* param_potential, void (*numeric_solving)(double, size_t, double, double, double, std::complex<double>*, double (*potential)(double, double, double*), double*), size_t freq_writing = 1);
+
+	cout << endl << "Lancement simulation" << endl;
 	simulation_1D(output, length, N_x, temps, N_t, masse, position, pot, param, numeric_solving, frequence_ecriture);
-
+	cout << endl << "Fin simulation" << endl;
 
 	data_affichage.S_x = nb_ecriture;
 	data_affichage.S_y = N_x+1;
-	data_affichage.table = (double**) malloc(nb_ecriture*sizeof(double));
+	data_affichage.table = (double**) malloc(nb_ecriture*sizeof(double*));
+	cout << nb_ecriture << endl;
 	for(size_t i = 0; i < nb_ecriture; i++)
 	{
 		data_affichage.table[i] = (double*) malloc((N_x+1)*sizeof(double));
@@ -172,6 +170,13 @@ int main()
 		}
 	}
 	graph_heatmap(data_affichage, length, "x", "t", nom_simulation + "_heatmap");
+	graph_simple(data_pot, "x", "y", nom_simulation + "_potentiel");
+	for(size_t i = 0; i < N_x; i++)
+	{
+		free(data_pot.table[i]);
+	}
+	free(data_pot.table);
+	free(V);
 	
 
 	for(size_t i = 0; i < nb_ecriture; i++)
@@ -181,6 +186,6 @@ int main()
 	}
 	free(output);
 	free(data_affichage.table);
-	free(position);
+	free(position);	
 	return 0;
 }
