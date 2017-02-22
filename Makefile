@@ -32,7 +32,7 @@ Test/Test_IO: Test/Test_IO.cpp Simulation/Simulation.a
 Python/Appel_Script.a: Python/Graph.o
 		ar -v -r $@ $^
 
-Python/Graph.o: Python/Graph.cpp
+Python/Graph.o: Python/Graph.cpp Simulation/Simulation.a
 		$(CXX) $(LDFLAGS) -o $@ $^ $(CFLAGS)
 
 
