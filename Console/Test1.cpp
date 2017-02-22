@@ -28,29 +28,29 @@ int main()
 	cout << "Simulation numerique SE" << endl;
 	
 	cout << "Nom de la simulation" << endl;
-	cin >> nom_simulation;
+	nom_simulation = "Result/Test1";
 
 	cout << "Toute les unités sont en SI" << endl << "Longeur boite :" << endl;
-	cin >> length;
+	length = 1e-8;
 
 	cout << endl << "Nombre de point :" << endl;
-	cin >> N_x;
+	N_x = 1000;
 
 	cout << endl << "Temps de simulation :" << endl;
-	cin >> temps;
+	temps = 1e-6;
 
 	cout << endl << "Nombre d'intervalle de temps (en pas de temps) :" << endl;
-	cin >> N_t;
+	N_t = 1000;
 
 	cout << endl << "Frequence ecriture temporelle :" << endl;
-	cin >> frequence_ecriture;
+	frequence_ecriture = 1;
 	nb_ecriture = number_output(N_t, frequence_ecriture);
 
 	cout << endl << "Masse :" << endl;
-	cin >> masse;
+	masse = 1.822e-27;
 
 	cout << endl << "Choix de la position initial \n 1. Uniforme \n 2. Gaussien" << endl;
-	cin >> choix;
+	choix = 2;
 
 	if(choix == 1)
 	{
@@ -61,11 +61,11 @@ int main()
 		param = (double*) malloc(3*sizeof(double));
 		cout << endl << "psi(x) = (2/(M_PI*a0^2))^0.25 * exp(i*k0*x) * exp(((x-x0)/a0)^2))" << endl;
 		cout << endl << "a0 :" << endl;
-		cin >> param[0];
+		param[0] = 1e-15;
 		cout << endl << "k0 :" << endl;
-		cin >> param[1];
+		cin >> 2.3e-16;
 		cout << endl << "x0 :" << endl;
-		cin >> param[2];
+		cin >> 3.0e-14;
 		position = paquet_gaussien(length, N_x, param);
 		free(param);
 	}
@@ -75,13 +75,13 @@ int main()
 	}
 
 	cout << endl << "Choix du potentiel \n 1. Constant \n 2. Sinusoidale \n 3. Parabole \n 4. Puit \n 5. Potentiel du sujet" << endl;
-	cin >> choix;
+	choix = 1;
 
 	if(choix == 1)
 	{	
 		param = (double*) malloc(sizeof(double));
 		cout << endl << "V(x) = V" << endl << "V :" << endl;
-		cin >> (*param);
+		*param = 0.;
 		pot = P_const;
 	}
 	else if(choix == 2)
@@ -137,8 +137,6 @@ int main()
 		throw "Erreur saisisie potentiel";
 	}
 	
-	cout << endl << "test" << endl;
-
 	Table2D data_pot;
 	data_pot.S_x = N_x;
 	data_pot.S_y = 2;
