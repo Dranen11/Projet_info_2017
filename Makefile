@@ -37,6 +37,9 @@ Python/Graph.o: Python/Graph.cpp
 SE_Simulation: Console/main.cpp Simulation/IO.o Simulation/Potential.o Simulation/Numeric_solving.o Python/Graph.o
 		$(CXX) $(LDFLAGS) -o $@ $^ $(CFLAGS)
 
+Console/Test1: Console/Test1.cpp Simulation/IO.o Simulation/Potential.o Simulation/Numeric_solving.o Python/Graph.o
+		$(CXX) $(LDFLAGS) -o $@ $^ $(CFLAGS)
+
 #######
 
 clean:
