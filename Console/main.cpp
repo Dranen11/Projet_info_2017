@@ -81,7 +81,7 @@ int main()
 	{	
 		param = (double*) malloc(sizeof(double));
 		cout << endl << "V(x) = V" << endl << "V :" << endl;
-		cin >> param[0];
+		cin >> *param;
 		pot = P_const;
 	}
 	else if(choix == 2)
