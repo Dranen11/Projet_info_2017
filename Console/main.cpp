@@ -2,6 +2,7 @@
 #include <string>
 #include <complex>
 #include <cstdlib>
+#include <iomanip>
 
 #include "../Simulation/Init_position.h"
 #include "../Simulation/Potential.h"
@@ -142,7 +143,7 @@ int main()
 	Table2D data_pot;
 	data_pot.S_x = N_x;
 	data_pot.S_y = 2;
-	data_pot.table = (double**) malloc(data_pot.S_x*sizeof(double));
+	data_pot.table = (double**) malloc(data_pot.S_x*sizeof(double*));
 	double *V = P_tableau(length, N_x, param, pot);
 	for(size_t i = 0; i < N_x; i++)
 	{
@@ -151,24 +152,40 @@ int main()
 		data_pot.table[i][1] = V[i];
 	}
 
-
-
+	
 	cout << endl << "Lancement simulation" << endl;
-	simulation_1D(output, length, N_x, temps, N_t, masse, position, pot, param, numeric_solving, frequence_ecriture);
+	simulation_1D(&output, length, N_x, temps, N_t, masse, position, pot, param, numeric_solving, frequence_ecriture);
 	cout << endl << "Fin simulation" << endl;
+
+	for(size_t i = 50; i < 60; i++)
+	{
+		for(size_t j = 510; j < 512; j++)
+		{
+			cout << output[i][j];
+		}
+	}
 
 	data_affichage.S_x = nb_ecriture;
 	data_affichage.S_y = N_x+1;
 	data_affichage.table = (double**) malloc(nb_ecriture*sizeof(double*));
-	cout << nb_ecriture << endl;
+	double prov_max = 0.;
 	for(size_t i = 0; i < nb_ecriture; i++)
 	{
 		data_affichage.table[i] = (double*) malloc((N_x+1)*sizeof(double));
 		for(size_t j = 0; j < N_x+1; j++)
 		{
-			data_affichage.table[i][j] = norm(output[i][j]);
+			if(j >= 1)
+			{
+				data_affichage.table[i][j] = norm(output[i][j]);
+				prov_max = max(prov_max, data_affichage.table[i][j]);
+			}
+			else
+			{
+				data_affichage.table[i][j] = abs(output[i][j]);
+			}
 		}
 	}
+	cout << setprecision(10) << prov_max << endl;
 	graph_heatmap(data_affichage, length, "x", "t", nom_simulation + "_heatmap");
 	graph_simple(data_pot, "x", "y", nom_simulation + "_potentiel");
 	for(size_t i = 0; i < N_x; i++)

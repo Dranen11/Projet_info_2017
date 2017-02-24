@@ -21,10 +21,10 @@ using namespace std;
 
 void lancement_script(string script)	
 {
-	Py_Initialize(); \
-  	PyRun_SimpleString(script.c_str()); \
+	Py_Initialize(); 
+  	PyRun_SimpleString(script.c_str()); 
   	Py_Finalize();
-}	
+}
 
 //Realise un graph classique avec X la premiere ligne du tableau et y la deuxieme ligne du tableau 
 void graph_simple(Table2D tableau, string label_x, string label_y, string graph_name)
@@ -108,11 +108,12 @@ void graph_heatmap(Table2D tableau, double length, string label_x, string label_
 	x += "]"; 
 
 	remplacement_chaine(script, S_TAB, tab);
-	remplacement_chaine(script, S_X_LAB, label_x);
-	remplacement_chaine(script, S_Y_LAB, label_y);
-	remplacement_chaine(script, S_NAME, graph_name);
+	remplacement_chaine(script, S_X_LAB, "'"+label_x+"'");
+	remplacement_chaine(script, S_Y_LAB, "'"+label_y+"'");
+	remplacement_chaine(script, S_NAME, "'"+graph_name+"'");
 	remplacement_chaine(script, S_X, x);
 	remplacement_chaine(script, S_Y, y);
 
 	lancement_script(script);
 }
+}	
