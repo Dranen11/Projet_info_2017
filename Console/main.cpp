@@ -10,11 +10,13 @@
 #include "../Simulation/Numeric_solving.h"
 #include "../Python/Graph.h"
 
+#include </usr/include/python2.7/Python.h>
 
 using namespace std;
 
 int main()
 {
+	Py_Initialize();
 	size_t choix;
 	double length, temps, masse;
 	size_t N_x, N_t, frequence_ecriture, nb_ecriture;
@@ -204,5 +206,6 @@ int main()
 	free(output);
 	free(data_affichage.table);
 	free(position);	
+	Py_Finalize();
 	return 0;
 }

@@ -21,9 +21,9 @@ using namespace std;
 
 void lancement_script(string script)	
 {
-	Py_Initialize(); 
-  	PyRun_SimpleString(script.c_str()); 
-  	Py_Finalize();
+	//Py_Initialize(); 
+  	PyRun_SimpleString(script.c_str());	
+  	//Py_Finalize();
 }
 
 //Realise un graph classique avec X la premiere ligne du tableau et y la deuxieme ligne du tableau 
@@ -116,4 +116,4 @@ void graph_heatmap(Table2D tableau, double length, string label_x, string label_
 
 	lancement_script(script);
 }
-}	
+

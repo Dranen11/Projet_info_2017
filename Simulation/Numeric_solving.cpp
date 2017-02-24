@@ -57,7 +57,7 @@ void simulation_1D(std::complex<double>*** output, double length, size_t N_x, do
       {
          writing_position_1D((*output)[nb_w++], t, position, N_x);
          count = 1;
-Table2D data_init;
+	/*Table2D data_init;
 	data_init.S_x = N_x;
 	data_init.S_y = 2;
 	data_init.table = (double**) malloc(data_init.S_x*sizeof(double*));
@@ -68,6 +68,11 @@ Table2D data_init;
 		data_init.table[i][1] = norm(position[i]);
 	}	
 	graph_simple(data_init, "x", "y", "test");
+	for(size_t i = 0; i < N_x; i++)
+	{
+		free(data_init.table[i]);
+	}
+	free(data_init.table);*/
       }
    }
 	

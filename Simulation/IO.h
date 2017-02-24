@@ -18,15 +18,15 @@ struct Writing
 struct Table2D
 {
    double **table;
-   double S_x;
-   double S_y;
+   size_t S_x;
+   size_t S_y;
 };
 
 struct Complex_Table2D
 {
    std::complex<double> **table;
-   double S_x;
-   double S_y;
+   size_t S_x;
+   size_t S_y;
 };
 
 void writing_position_1D(Writing& output, double t, std::complex<double>* position, size_t N_x);
