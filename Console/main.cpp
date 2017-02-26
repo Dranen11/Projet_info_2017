@@ -159,14 +159,6 @@ int main()
 	simulation_1D(&output, length, N_x, temps, N_t, masse, position, pot, param, numeric_solving, frequence_ecriture);
 	cout << endl << "Fin simulation" << endl;
 
-	for(size_t i = 50; i < 60; i++)
-	{
-		for(size_t j = 510; j < 512; j++)
-		{
-			cout << output[i][j];
-		}
-	}
-
 	data_affichage.S_x = nb_ecriture;
 	data_affichage.S_y = N_x+1;
 	data_affichage.table = (double**) malloc(nb_ecriture*sizeof(double*));

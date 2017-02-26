@@ -79,7 +79,7 @@ void graph_heatmap(Table2D tableau, double length, string label_x, string label_
 	for(size_t i = 0; i < tableau.S_x; i++)
 	{
 		tab += "[";
-		for(size_t j = 1; j < tableau.S_y; j++)
+		for(size_t j = 1; j < tableau.S_y; j++)//j = 1 car première collonne contient le temps
 		{
 			stringstream prov;
 			prov << setprecision(PRECISION) << tableau.table[i][j]; 
@@ -96,14 +96,14 @@ void graph_heatmap(Table2D tableau, double length, string label_x, string label_
 	y += "]";
 
 	x = "[";
-	for(size_t j = 0; j < tableau.S_y-1; j++)
+	for(size_t j = 1; j < tableau.S_y-1; j++)//j = 1 car première collonne contient le temps
 	{
 		stringstream prov;
-		prov << setprecision(PRECISION) << (j-1)*length/(tableau.S_y-2) << ","; 
+		prov << setprecision(PRECISION) << j*length/(tableau.S_y-1) << ","; 
 		x += prov.str();
 	}
 	stringstream prov;
-	prov << setprecision(PRECISION) << length << ","; 
+	prov << setprecision(PRECISION) << length; 
 	x += prov.str();
 	x += "]"; 
 

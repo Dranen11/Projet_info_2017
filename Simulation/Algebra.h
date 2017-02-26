@@ -2,6 +2,7 @@
 #define ALGEBRA_H
 
 #include <cstdlib>
+#include "Verif.h"
 
 //Solving a symmetric linear system using alternative cholesky decomposition (LDLt)
 template<typename Type>
@@ -22,12 +23,17 @@ Type* solve_cholesky_tri_diag(Type* low_diag, Type* diag, Type* u, std::size_t n
       dec_diag[i+1] = diag[i+1]-dec_diag[i]*dec_low_diag[i]*dec_low_diag[i];
    }
 
+   verif_nan("Algebra_sub", dec_low_diag, n-1, 0);
+   verif_nan("Algebra_diag", dec_diag, n, 0);
+
    //Solve Equation
    result[0] = u[0];
    for(size_t i = 1; i < n; i++)
    {
-      result[i] = u[i]-dec_low_diag[i-1]*result[i-1];
+      result[i] = u[i]-(dec_low_diag[i-1]*result[i-1]);
    }
+
+   verif_nan("Algebra_R_i", result, n, 0);
 
    result[n-1] = result[n-1]/dec_diag[n-1];
    for(size_t i = n-1; i-- > 0;)

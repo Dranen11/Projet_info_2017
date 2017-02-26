@@ -11,13 +11,17 @@ X,Y = np.meshgrid(x,y)
 print(np.max(tableau))
 print((1/np.max(tableau)))
 tableau = (1/np.max(tableau))*tableau
-
+print(np.max(tableau))
+print(np.std(tableau))
+print(np.mean(tableau))
+print(np.median(tableau))
 
 figure(1,figsize=(16,6))
-contourf(X, Y, tableau, 8, alpha=.75, cmap='jet')
+contourf(X, Y, tableau, cmap='jet')
+#imshow(tableau, cmap='jet')
 xlabel(x_label)
 ylabel(y_label)
 title(graph_name)
-
 savefig(graph_name + ".eps")
+
 show();
